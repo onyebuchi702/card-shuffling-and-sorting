@@ -83,3 +83,8 @@ export const sortDeck = (deck: Card[], method: SortMethod): Card[] => {
       return sortByRankThenSuit(deck);
   }
 };
+
+export const getRandomSortMethod = (): SortMethod => {
+  const methods = Object.values(SORT_METHODS);
+  return methods[Math.floor(Math.random() * methods.length)];
+};

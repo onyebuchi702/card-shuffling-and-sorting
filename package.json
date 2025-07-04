@@ -1,17 +1,25 @@
 {
   "name": "card-shuffling-and-sorting",
   "version": "1.0.0",
+  "description": "A full-stack TypeScript application for interactive card deck management with shuffling, sorting, and visualization capabilities.",
   "main": "index.js",
   "scripts": {
-    "client": "npm --prefix client start",
-    "server": "npm --prefix server run dev",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "yarn --cwd client start",
+    "server": "yarn --cwd server dev",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "test": "yarn test:server && yarn test:client",
+    "test:server": "yarn --cwd server test",
+    "test:client": "yarn --cwd client test --watchAll=false",
+    "test:all": "yarn test",
+    "test:coverage": "yarn test:server --coverage && yarn test:client --coverage",
+    "build": "yarn build:server && yarn build:client",
+    "build:server": "yarn --cwd server build",
+    "build:client": "yarn --cwd client build",
+    "install:all": "yarn install && yarn --cwd server install && yarn --cwd client install"
   },
-  "keywords": [],
+  "keywords": ["card-shuffling", "sorting", "typescript", "react", "express", "full-stack"],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "concurrently": "^9.2.0"
   }

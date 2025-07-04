@@ -1,7 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
-import { createDeck, shuffleDeck, sortDeck } from "./utils/card";
-import { SORT_METHODS } from "./constants/sortMethods";
+import {
+  createDeck,
+  shuffleDeck,
+  sortDeck,
+  getRandomSortMethod,
+} from "./utils/card";
 import {
   Card,
   SortMethod,
@@ -19,11 +23,6 @@ app.use(cors());
 app.use(express.json());
 
 let currentDeck: Card[] = createDeck();
-
-const getRandomSortMethod = (): SortMethod => {
-  const methods = Object.values(SORT_METHODS);
-  return methods[Math.floor(Math.random() * methods.length)];
-};
 
 app.get("/api/deck", (req: Request, res: Response<DeckResponse>) => {
   try {
