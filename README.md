@@ -218,13 +218,13 @@ Reset deck to original order
 - Client uses custom hooks for API integration
 - Real-time status updates and notifications
 
-**🎨 UI/UX:**
+**UI/UX:**
 - Responsive card grid layout
 - Loading states and error handling
 - Visual feedback for all actions
 - Accessibility features
 
-**🧪 Quality Assurance:**
+**Quality Assurance:**
 - Comprehensive test suites
 - Type safety with TypeScript
 - Error boundaries and handling
