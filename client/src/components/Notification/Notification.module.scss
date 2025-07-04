@@ -1,0 +1,118 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.notification {
+  position: fixed;
+  top: vars.$spacing-xl;
+  right: vars.$spacing-xl;
+  z-index: 1000;
+  @include mix.flex-between;
+  padding: vars.$spacing-md vars.$spacing-lg;
+  border-radius: vars.$border-radius-md;
+  box-shadow: vars.$shadow-lg;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideIn 0.3s ease-out;
+  max-width: 400px;
+  min-width: 300px;
+  
+  &Success {
+    background: rgba(vars.$success-color, 0.9);
+    color: vars.$text-white;
+  }
+  
+  &Error {
+    background: rgba(vars.$error-color, 0.9);
+    color: vars.$text-white;
+  }
+  
+  &Info {
+    background: rgba(vars.$info-color, 0.9);
+    color: vars.$text-white;
+  }
+  
+  &Warning {
+    background: rgba(vars.$warning-color, 0.9);
+    color: vars.$text-white;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notificationSuccess {
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+}
+
+.notificationError {
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+}
+
+.notificationInfo {
+  background: rgba(59, 130, 246, 0.9);
+  color: white;
+}
+
+.notificationWarning {
+  background: rgba(245, 158, 11, 0.9);
+  color: white;
+}
+
+.notificationContent {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-sm;
+  flex: 1;
+}
+
+.notificationIcon {
+  font-size: vars.$font-size-large;
+  flex-shrink: 0;
+}
+
+.notificationMessage {
+  font-size: vars.$font-size-small;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.notificationClose {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: vars.$font-size-xl;
+  cursor: pointer;
+  padding: vars.$spacing-xs;
+  border-radius: vars.$border-radius-sm;
+  transition: background-color vars.$transition-fast;
+  flex-shrink: 0;
+  margin-left: vars.$spacing-xs;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@include mix.tablet-up {
+  .notification {
+    top: vars.$spacing-md;
+    right: vars.$spacing-md;
+    left: vars.$spacing-md;
+    max-width: none;
+    min-width: unset;
+  }
+  
+  .notificationMessage {
+    font-size: vars.$font-size-xs;
+  }
+}

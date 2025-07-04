@@ -1,0 +1,59 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.statusBar {
+  @include mix.flex-center;
+  gap: vars.$spacing-xl;
+  margin-bottom: vars.$spacing-md;
+  padding: vars.$spacing-md;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: vars.$border-radius-md;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statusItem {
+  @include mix.flex-center;
+  gap: vars.$spacing-xs;
+  color: vars.$text-white;
+  font-size: vars.$font-size-small;
+}
+
+.statusLabel {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.statusValue {
+  font-weight: 600;
+  color: vars.$warning-color;
+  text-transform: capitalize;
+}
+
+.statusIcon {
+  font-size: vars.$font-size-base;
+}
+
+@include mix.tablet-up {
+  .statusBar {
+    flex-direction: column;
+    gap: vars.$spacing-sm;
+    text-align: center;
+  }
+  
+  .statusItem {
+    justify-content: center;
+    font-size: vars.$font-size-xs;
+  }
+}
+
+@include mix.mobile-only {
+  .statusBar {
+    padding: vars.$spacing-sm;
+    gap: vars.$spacing-xs;
+  }
+  
+  .statusItem {
+    font-size: vars.$font-size-xs;
+  }
+}
