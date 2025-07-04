@@ -3,8 +3,7 @@ import { CardGrid } from "./components/CardGrid";
 import { Controls } from "./components/Controls";
 import { StatusBar } from "./components/StatusBar";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-import { useNotification } from "./hooks/useNotification";
-import { useDeck } from "./hooks/useDeck";
+import { useNotification, useDeck } from "./hooks";
 import { Notification } from "./components/Notification";
 import "./styles/main.scss";
 
@@ -23,7 +22,6 @@ const App = () => {
   } = useDeck(showNotification);
 
   useEffect(() => {
-    console.log("App mounted, fetching deck...");
     fetchDeck();
   }, [fetchDeck]);
 
