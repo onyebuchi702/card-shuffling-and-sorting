@@ -1,0 +1,44 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#local config
+#/src/config.js
+#config.js
+
+# development
+/webpack/dist-dev
+
+# dependencies
+node_modules
+/api/node_modules
+/ui/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+public/assets/img/.DS_Store
+dist-dev
+dist-prod
+package-lock.json
+.vscode
+.vs
+bin
+obj
+.DS_Store
+.env
+.env.uat
+.env.local
+.env.staging
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
