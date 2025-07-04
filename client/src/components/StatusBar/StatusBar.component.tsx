@@ -1,34 +1,48 @@
 import React, { memo } from "react";
-import "./StatusBar.module.scss";
+import styles from "./StatusBar.module.scss";
 import { getActionIcon, formatSortMethod } from "./StatusBar.utils";
 
 interface StatusBarProps {
   cardCount: number;
   lastAction?: string;
   sortMethod?: string;
+  onRefresh?: () => void;
 }
 
 export const StatusBar = memo(
-  ({ cardCount, lastAction, sortMethod }: StatusBarProps) => {
+  ({ cardCount, lastAction, sortMethod, onRefresh }: StatusBarProps) => {
     return (
-      <div className="status-bar">
-        <div className="status-item">
-          <span className="status-label">Cards:</span>
-          <span className="status-value">{cardCount}</span>
+      <div className={styles.statusBar}>
+        <div className={styles.statusItem}>
+          <span className={styles.statusLabel}>Cards:</span>
+          <span className={styles.statusValue}>{cardCount}</span>
+          {cardCount === 0 && onRefresh && (
+            <button
+              className={styles.refreshButton}
+              onClick={onRefresh}
+              title="Refresh deck"
+            >
+              🔄
+            </button>
+          )}
         </div>
 
         {lastAction && (
-          <div className="status-item">
-            <span className="status-icon">{getActionIcon(lastAction)}</span>
-            <span className="status-label">Last Action:</span>
-            <span className="status-value">{lastAction}</span>
+          <div className={styles.statusItem}>
+            <span className={styles.statusIcon}>
+              {getActionIcon(lastAction)}
+            </span>
+            <span className={styles.statusLabel}>Last Action:</span>
+            <span className={styles.statusValue}>{lastAction}</span>
           </div>
         )}
 
         {sortMethod && (
-          <div className="status-item">
-            <span className="status-label">Sort Method:</span>
-            <span className="status-value">{formatSortMethod(sortMethod)}</span>
+          <div className={styles.statusItem}>
+            <span className={styles.statusLabel}>Sort Method:</span>
+            <span className={styles.statusValue}>
+              {formatSortMethod(sortMethod)}
+            </span>
           </div>
         )}
       </div>

@@ -39,6 +39,30 @@
   opacity: 0.8;
 }
 
+.emptyState {
+  @include mix.flex-center;
+  flex-direction: column;
+  gap: vars.$spacing-md;
+  
+  h3 {
+    margin: 0;
+    font-size: vars.$font-size-xl;
+    color: vars.$text-white;
+  }
+  
+  p {
+    margin: 0;
+    font-size: vars.$font-size-base;
+    color: rgba(vars.$text-white, 0.7);
+    max-width: 300px;
+  }
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  opacity: 0.6;
+}
+
 @include mix.tablet-up {
   .cardGridContainer {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

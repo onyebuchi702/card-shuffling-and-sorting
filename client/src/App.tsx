@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { CardGrid } from "./components/CardGrid";
+import { Controls } from "./components/Controls";
+import { StatusBar } from "./components/StatusBar";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { useNotification } from "./hooks/useNotification";
+import { useDeck } from "./hooks/useDeck";
+import { Notification } from "./components/Notification";
+import "./styles/main.scss";
 
-function App() {
+const App = () => {
+  const { notification, showNotification, hideNotification } =
+    useNotification();
+  const {
+    deck,
+    isLoading,
+    lastAction,
+    sortMethod,
+    fetchDeck,
+    shuffleDeck,
+    sortDeck,
+    resetDeck,
+  } = useDeck(showNotification);
+
+  useEffect(() => {
+    console.log("App mounted, fetching deck...");
+    fetchDeck();
+  }, [fetchDeck]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <div className="app">
+        <header className="header">
+          <h1>Card Shuffling & Sorting</h1>
+          <p>Interactive deck management with multiple sorting algorithms</p>
+        </header>
+
+        <main className="main-content">
+          <Controls
+            onShuffle={shuffleDeck}
+            onSort={sortDeck}
+            onReset={resetDeck}
+            isLoading={isLoading}
+          />
+
+          <StatusBar
+            cardCount={deck.length}
+            lastAction={lastAction?.toString()}
+            sortMethod={sortMethod || undefined}
+            onRefresh={fetchDeck}
+          />
+
+          <CardGrid cards={deck} isLoading={isLoading} />
+        </main>
+
+        {notification && (
+          <Notification
+            message={notification.message}
+            type={notification.type}
+            onClose={hideNotification}
+          />
+        )}
+      </div>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;

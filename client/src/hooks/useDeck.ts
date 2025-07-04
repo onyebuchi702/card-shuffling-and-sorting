@@ -26,8 +26,15 @@ export const useDeck = (
       setIsLoading(true);
       const response = await apiService.getDeck();
       setDeck(response.deck);
-    } catch (error) {
-      showNotification("Failed to fetch deck", "error");
+      console.log(`Successfully fetched ${response.deck.length} cards`);
+    } catch (error: any) {
+      console.error("Error details:", {
+        message: error?.message,
+        status: error?.status,
+        stack: error?.stack,
+      });
+      const errorMessage = error?.message || "Failed to fetch deck";
+      showNotification(errorMessage, "error");
     } finally {
       setIsLoading(false);
     }
@@ -41,8 +48,9 @@ export const useDeck = (
       setLastAction(CardAction.SHUFFLED);
       setSortMethod(null);
       showNotification("Deck shuffled successfully!", "success");
-    } catch (error) {
-      showNotification("Failed to shuffle deck", "error");
+    } catch (error: any) {
+      const errorMessage = error?.message || "Failed to shuffle deck";
+      showNotification(errorMessage, "error");
     } finally {
       setIsLoading(false);
     }
@@ -59,8 +67,10 @@ export const useDeck = (
         `Deck sorted using ${response.method} method!`,
         "success"
       );
-    } catch (error) {
-      showNotification("Failed to sort deck", "error");
+    } catch (error: any) {
+      console.error("Failed to sort deck:", error);
+      const errorMessage = error?.message || "Failed to sort deck";
+      showNotification(errorMessage, "error");
     } finally {
       setIsLoading(false);
     }
@@ -74,8 +84,9 @@ export const useDeck = (
       setLastAction(CardAction.RESET);
       setSortMethod(null);
       showNotification("Deck reset to original order!", "success");
-    } catch (error) {
-      showNotification("Failed to reset deck", "error");
+    } catch (error: any) {
+      const errorMessage = error?.message || "Failed to reset deck";
+      showNotification(errorMessage, "error");
     } finally {
       setIsLoading(false);
     }

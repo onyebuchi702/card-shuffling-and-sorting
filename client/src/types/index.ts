@@ -1,10 +1,40 @@
-import { Card, Suit, Rank, SortMethod } from "../../../types/card";
-import { CardAction } from "../../../enums/card";
-
 export * from "./api";
 
-export type { Card, Suit, Rank, SortMethod };
-export { CardAction };
+export enum CardAction {
+  SHUFFLED = "shuffled",
+  SORTED = "sorted",
+  RESET = "reset",
+}
+
+export interface Card {
+  id: string;
+  suit: Suit;
+  rank: Rank;
+  display: string;
+}
+
+export type Suit = "Spades" | "Hearts" | "Diamonds" | "Clubs";
+export type Rank =
+  | "A"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6"
+  | "7"
+  | "8"
+  | "9"
+  | "10"
+  | "J"
+  | "Q"
+  | "K";
+export type SortMethod =
+  | "default"
+  | "shuffle"
+  | "bubble"
+  | "quick"
+  | "merge"
+  | "heap";
 
 export interface GameState {
   deck: Card[];

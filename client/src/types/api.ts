@@ -1,5 +1,4 @@
-import { Card, SortMethod } from "../../../types/card";
-import { CardAction } from "../../../enums/card";
+import { Card, SortMethod, CardAction } from "./card";
 
 export interface DeckResponse {
   success: boolean;

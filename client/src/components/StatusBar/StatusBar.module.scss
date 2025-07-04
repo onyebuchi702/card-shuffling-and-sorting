@@ -34,6 +34,22 @@
   font-size: vars.$font-size-base;
 }
 
+.refreshButton {
+  background: none;
+  border: none;
+  font-size: vars.$font-size-base;
+  cursor: pointer;
+  margin-left: vars.$spacing-xs;
+  padding: vars.$spacing-xs;
+  border-radius: vars.$border-radius-sm;
+  transition: all vars.$transition-fast;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(180deg);
+  }
+}
+
 @include mix.tablet-up {
   .statusBar {
     flex-direction: column;

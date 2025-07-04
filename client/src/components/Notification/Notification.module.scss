@@ -16,24 +16,12 @@
   max-width: 400px;
   min-width: 300px;
   
-  &Success {
-    background: rgba(vars.$success-color, 0.9);
-    color: vars.$text-white;
-  }
-  
-  &Error {
-    background: rgba(vars.$error-color, 0.9);
-    color: vars.$text-white;
-  }
-  
-  &Info {
-    background: rgba(vars.$info-color, 0.9);
-    color: vars.$text-white;
-  }
-  
-  &Warning {
-    background: rgba(vars.$warning-color, 0.9);
-    color: vars.$text-white;
+  @include mix.mobile-only {
+    top: vars.$spacing-md;
+    right: vars.$spacing-md;
+    left: vars.$spacing-md;
+    max-width: none;
+    min-width: unset;
   }
 }
 
@@ -100,19 +88,5 @@
   
   &:hover {
     background: rgba(255, 255, 255, 0.2);
-  }
-}
-
-@include mix.tablet-up {
-  .notification {
-    top: vars.$spacing-md;
-    right: vars.$spacing-md;
-    left: vars.$spacing-md;
-    max-width: none;
-    min-width: unset;
-  }
-  
-  .notificationMessage {
-    font-size: vars.$font-size-xs;
   }
 }

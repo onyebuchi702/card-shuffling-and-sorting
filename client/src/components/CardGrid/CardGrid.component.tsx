@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Card } from "../Card";
 import { LoadingSpinner } from "../LoadingSpinner";
-import "./CardGrid.module.scss";
+import styles from "./CardGrid.module.scss";
 import { Card as CardType } from "../../types";
 
 interface CardGridProps {
@@ -12,7 +12,7 @@ interface CardGridProps {
 export const CardGrid = memo(({ cards, isLoading }: CardGridProps) => {
   if (isLoading) {
     return (
-      <div className="card-grid-loading">
+      <div className={styles.cardGridLoading}>
         <LoadingSpinner />
         <p>Processing deck...</p>
       </div>
@@ -21,15 +21,22 @@ export const CardGrid = memo(({ cards, isLoading }: CardGridProps) => {
 
   if (!cards || cards.length === 0) {
     return (
-      <div className="card-grid-empty">
-        <p>No cards to display</p>
+      <div className={styles.cardGridEmpty}>
+        <div className={styles.emptyState}>
+          <span className={styles.emptyIcon}>🃏</span>
+          <h3>No cards to display</h3>
+          <p>
+            The deck appears to be empty. Try refreshing or check your
+            connection.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="card-grid">
-      <div className="card-grid-container">
+    <div className={styles.cardGrid}>
+      <div className={styles.cardGridContainer}>
         {cards.map((card, index) => (
           <Card key={card.id} card={card} index={index} />
         ))}

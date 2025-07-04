@@ -1,0 +1,147 @@
+@use 'sass:color';
+@use 'variables' as vars;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin button-base {
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border: none;
+  border-radius: vars.$border-radius-md;
+  font-family: vars.$font-family-primary;
+  font-size: vars.$font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all vars.$transition-fast;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(vars.$primary-color, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: linear-gradient(135deg, vars.$primary-color 0%, vars.$secondary-color 100%);
+  color: vars.$text-white;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: vars.$shadow-md;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: vars.$background-light;
+  color: vars.$text-color;
+  border: 1px solid vars.$card-border;
+  
+  &:hover:not(:disabled) {
+    background: color.scale(vars.$background-light, $lightness: -5%);
+    transform: translateY(-1px);
+  }
+}
+
+@mixin card-base {
+  background: vars.$card-background;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-sm;
+  transition: all vars.$transition-medium;
+  
+  &:hover {
+    box-shadow: vars.$shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin card-padding {
+  padding: vars.$spacing-lg;
+}
+
+@mixin mobile-up {
+  @media (min-width: vars.$breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: vars.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: vars.$breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin mobile-only {
+  @media (max-width: #{vars.$breakpoint-mobile - 1px}) {
+    @content;
+  }
+}
+
+@mixin fadeIn($duration: vars.$transition-medium) {
+  animation: fadeIn $duration ease-in-out;
+}
+
+@mixin slideInUp($duration: vars.$transition-medium) {
+  animation: slideInUp $duration ease-out;
+}
+
+@mixin bounce($duration: 0.6s) {
+  animation: bounce $duration ease-in-out;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@mixin spinner($size: 2rem, $color: vars.$primary-color) {
+  width: $size;
+  height: $size;
+  border: 2px solid rgba($color, 0.3);
+  border-top: 2px solid $color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

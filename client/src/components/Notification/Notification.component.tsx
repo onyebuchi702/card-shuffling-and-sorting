@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import "./Notification.module.scss";
+import styles from "./Notification.module.scss";
 
 interface NotificationProps {
   message: string;
@@ -40,13 +40,21 @@ export const Notification = memo(
     };
 
     return (
-      <div className={`notification notification-${type}`}>
-        <div className="notification-content">
-          <span className="notification-icon">{getNotificationIcon(type)}</span>
-          <span className="notification-message">{message}</span>
+      <div
+        className={`${styles.notification} ${
+          styles[
+            `notification${type?.charAt(0).toUpperCase() + type?.slice(1)}`
+          ]
+        }`}
+      >
+        <div className={styles.notificationContent}>
+          <span className={styles.notificationIcon}>
+            {getNotificationIcon(type)}
+          </span>
+          <span className={styles.notificationMessage}>{message}</span>
         </div>
         <button
-          className="notification-close"
+          className={styles.notificationClose}
           onClick={handleClose}
           aria-label="Close notification"
         >
