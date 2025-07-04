@@ -1,11 +1,5 @@
 import { useState, useCallback } from "react";
-
-type NotificationType = "info" | "success" | "warning" | "error";
-
-interface NotificationData {
-  message: string;
-  type: NotificationType;
-}
+import { NotificationData, NotificationType } from "../types";
 
 export const useNotification = () => {
   const [notification, setNotification] = useState<NotificationData | null>(

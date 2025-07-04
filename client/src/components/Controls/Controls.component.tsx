@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import "./Controls.module.scss";
+import styles from "./Controls.module.scss";
 import { Button } from "../Button";
 
 interface ControlsProps {
@@ -12,8 +12,8 @@ interface ControlsProps {
 export const Controls = memo(
   ({ onShuffle, onSort, onReset, isLoading }: ControlsProps) => {
     return (
-      <div className="controls">
-        <div className="controls-group">
+      <div className={styles.controls}>
+        <div className={styles.controlsGroup}>
           <Button
             onClick={onShuffle}
             disabled={isLoading}

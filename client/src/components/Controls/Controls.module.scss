@@ -19,7 +19,7 @@
 
 @include mix.tablet-up {
   .controlsGroup {
-    flex-direction: column;
+    flex-direction: row;
     gap: vars.$spacing-sm;
     padding: vars.$spacing-sm;
   }

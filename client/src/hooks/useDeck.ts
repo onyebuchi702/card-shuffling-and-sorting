@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { apiService } from "../services";
-import { CardAction, Card } from "../types";
+import { CardAction, Card, NotificationType } from "../types";
 
 interface UseDeckReturn {
   deck: Card[];
@@ -14,7 +14,7 @@ interface UseDeckReturn {
 }
 
 export const useDeck = (
-  showNotification: (message: string, type?: any) => void
+  showNotification: (message: string, type?: NotificationType) => void
 ): UseDeckReturn => {
   const [deck, setDeck] = useState<Card[]>([]);
   const [isLoading, setIsLoading] = useState(false);

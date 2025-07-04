@@ -1,4 +1,16 @@
-export type SortMethod = "rank_then_suit" | "suit_then_rank";
+export enum CardAction {
+  SHUFFLED = "shuffled",
+  SORTED = "sorted",
+  RESET = "reset",
+}
+
+export interface Card {
+  id: string;
+  suit: Suit;
+  rank: Rank;
+  display: string;
+}
+
 export type Suit = "Spades" | "Hearts" | "Diamonds" | "Clubs";
 export type Rank =
   | "A"
@@ -14,17 +26,28 @@ export type Rank =
   | "J"
   | "Q"
   | "K";
+export type SortMethod =
+  | "default"
+  | "shuffle"
+  | "bubble"
+  | "quick"
+  | "merge"
+  | "heap";
 
-export interface Card {
-  suit: Suit;
-  rank: Rank;
-  value: number;
-  id: string;
-  display: string;
+export interface GameState {
+  deck: Card[];
+  isLoading: boolean;
+  error: string | null;
+  lastAction: string | null;
+  sortMethod: string | null;
 }
 
-export enum CardAction {
-  SHUFFLED = "shuffled",
-  SORTED = "sorted",
-  RESET = "reset",
+export interface CardComponentProps {
+  card: Card;
+  index: number;
+}
+
+export interface DeckDisplayProps {
+  deck: Card[];
+  isLoading: boolean;
 }

@@ -1,6 +1,29 @@
 @use '../abstracts/variables' as vars;
 @use '../abstracts/mixins' as mix;
 
+body {
+  font-family: vars.$font-family-primary;
+  font-size: vars.$font-size-base;
+  line-height: 1.6;
+  color: vars.$text-color;
+  background: linear-gradient(135deg, vars.$primary-color 0%, vars.$secondary-color 100%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: vars.$spacing-md;
+  @include mix.text-shadow;
+}
+
+h1 { font-size: vars.$font-size-xxl; }
+h2 { font-size: vars.$font-size-xl; }
+h3 { font-size: vars.$font-size-large; }
+
+
 .app {
   min-height: 100vh;
   @include mix.flex-column;
@@ -33,16 +56,4 @@
   flex: 1;
   @include mix.flex-column;
   gap: vars.$spacing-xl;
-}
-
-.controls {
-  @include mix.flex-center;
-  gap: vars.$spacing-md;
-  margin-bottom: vars.$spacing-xl;
-  flex-wrap: wrap;
-  
-  @include mix.mobile-only {
-    flex-direction: column;
-    gap: vars.$spacing-sm;
-  }
 }

@@ -18,12 +18,6 @@
   align-items: center;
 }
 
-@mixin flex-around {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 @mixin button-base {
   padding: vars.$spacing-sm vars.$spacing-md;
   border: none;
@@ -75,22 +69,6 @@
   }
 }
 
-@mixin card-base {
-  background: vars.$card-background;
-  border-radius: vars.$border-radius-lg;
-  box-shadow: vars.$shadow-sm;
-  transition: all vars.$transition-medium;
-  
-  &:hover {
-    box-shadow: vars.$shadow-md;
-    transform: translateY(-2px);
-  }
-}
-
-@mixin card-padding {
-  padding: vars.$spacing-lg;
-}
-
 @mixin mobile-up {
   @media (min-width: vars.$breakpoint-mobile) {
     @content;
@@ -113,24 +91,6 @@
   @media (max-width: #{vars.$breakpoint-mobile - 1px}) {
     @content;
   }
-}
-
-@mixin fadeIn($duration: vars.$transition-medium) {
-  animation: fadeIn $duration ease-in-out;
-}
-
-@mixin slideInUp($duration: vars.$transition-medium) {
-  animation: slideInUp $duration ease-out;
-}
-
-@mixin bounce($duration: 0.6s) {
-  animation: bounce $duration ease-in-out;
-}
-
-@mixin text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 @mixin text-shadow {
