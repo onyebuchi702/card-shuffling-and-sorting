@@ -17,7 +17,10 @@ class ApiService {
 
   constructor() {
     this.baseURL = API_BASE_URL;
-    console.log("ApiService initialized with baseURL:", this.baseURL);
+  }
+
+  get baseUrl(): string {
+    return this.baseURL;
   }
 
   async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
@@ -29,8 +32,6 @@ class ApiService {
       },
       ...options,
     };
-
-    console.log(`Making API request to: ${url}`);
 
     try {
       const response = await fetch(url, config);
@@ -47,14 +48,13 @@ class ApiService {
       }
 
       const data = await response.json();
-      console.log("Response data:", data);
 
       if (!data.success) {
         const apiError: ApiError = {
           message: data.error || "API request failed",
           status: response.status,
         };
-        console.error(`API Error: ${apiError.message}`);
+
         throw apiError;
       }
 

@@ -26,7 +26,6 @@ export const useDeck = (
       setIsLoading(true);
       const response = await apiService.getDeck();
       setDeck(response.deck);
-      console.log(`Successfully fetched ${response.deck.length} cards`);
     } catch (error: any) {
       console.error("Error details:", {
         message: error?.message,
