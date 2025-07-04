@@ -1,6 +1,6 @@
 # Card Shuffling and Sorting Application
 
-A modern, full-stack TypeScript application that provides an interactive card deck management system with shuffling, sorting, and visualization capabilities.
+A full-stack TypeScript application that provides an interactive card deck management system with shuffling, sorting, and visualization capabilities.
 
 ##  What This Application Does
 
