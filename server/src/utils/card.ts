@@ -1,7 +1,8 @@
-const { SUITS, RANKS, SORT_METHODS } = require("../constants/sortMethods");
+import { SUITS, RANKS, SORT_METHODS } from "../constants/sortMethods";
+import { Card, Suit, Rank, SortMethod } from "../types";
 
-export const createDeck = () => {
-  const deck = [];
+export const createDeck = (): Card[] => {
+  const deck: Card[] = [];
   SUITS.forEach((suit) => {
     RANKS.forEach((rank) => {
       deck.push({
@@ -16,8 +17,8 @@ export const createDeck = () => {
   return deck;
 };
 
-export const getRankValue = (rank) => {
-  const rankValues = {
+export const getRankValue = (rank: Rank): number => {
+  const rankValues: Record<Rank, number> = {
     A: 1,
     "2": 2,
     "3": 3,
@@ -35,8 +36,8 @@ export const getRankValue = (rank) => {
   return rankValues[rank];
 };
 
-export const getSuitValue = (suit) => {
-  const suitValues = {
+export const getSuitValue = (suit: Suit): number => {
+  const suitValues: Record<Suit, number> = {
     Spades: 4,
     Hearts: 3,
     Diamonds: 2,
@@ -45,7 +46,7 @@ export const getSuitValue = (suit) => {
   return suitValues[suit];
 };
 
-export const shuffleDeck = (deck) => {
+export const shuffleDeck = (deck: Card[]): Card[] => {
   const shuffled = [...deck];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -54,7 +55,7 @@ export const shuffleDeck = (deck) => {
   return shuffled;
 };
 
-export const sortByRankThenSuit = (deck) => {
+export const sortByRankThenSuit = (deck: Card[]): Card[] => {
   return deck.sort((a, b) => {
     if (a.value !== b.value) {
       return a.value - b.value;
@@ -63,7 +64,7 @@ export const sortByRankThenSuit = (deck) => {
   });
 };
 
-export const sortBySuitThenRank = (deck) => {
+export const sortBySuitThenRank = (deck: Card[]): Card[] => {
   return deck.sort((a, b) => {
     if (a.suit !== b.suit) {
       return getSuitValue(a.suit) - getSuitValue(b.suit);
@@ -72,7 +73,7 @@ export const sortBySuitThenRank = (deck) => {
   });
 };
 
-export const sortDeck = (deck, method) => {
+export const sortDeck = (deck: Card[], method: SortMethod): Card[] => {
   switch (method) {
     case SORT_METHODS.RANK_THEN_SUIT:
       return sortByRankThenSuit(deck);

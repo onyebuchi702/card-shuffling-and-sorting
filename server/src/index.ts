@@ -1,22 +1,31 @@
-const express = require("express");
-const cors = require("cors");
-const { createDeck, shuffleDeck, sortDeck } = require("./utils/card");
-const { SORT_METHODS } = require("./constants/sortMethods");
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import { createDeck, shuffleDeck, sortDeck } from "./utils/card";
+import { SORT_METHODS } from "./constants/sortMethods";
+import {
+  Card,
+  SortMethod,
+  CardAction,
+  DeckResponse,
+  ShuffleResponse,
+  SortResponse,
+  ResetResponse,
+} from "./types";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
 
-let currentDeck = createDeck();
+let currentDeck: Card[] = createDeck();
 
-const getRandomSortMethod = () => {
-  const methods = Object.keys(SORT_METHODS);
+const getRandomSortMethod = (): SortMethod => {
+  const methods = Object.values(SORT_METHODS);
   return methods[Math.floor(Math.random() * methods.length)];
 };
 
-app.get("/api/deck", (req, res) => {
+app.get("/api/deck", (req: Request, res: Response<DeckResponse>) => {
   try {
     res.json({
       success: true,
@@ -26,69 +35,78 @@ app.get("/api/deck", (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
+      deck: [],
+      count: 0,
       error: "Failed to retrieve deck",
     });
   }
 });
 
-app.post("/api/shuffle", (req, res) => {
+app.post("/api/shuffle", (req: Request, res: Response<ShuffleResponse>) => {
   try {
     currentDeck = shuffleDeck([...currentDeck]);
     res.json({
       success: true,
       deck: currentDeck,
-      action: "shuffled",
+      action: CardAction.SHUFFLED,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
+      deck: [],
+      action: CardAction.SHUFFLED,
       error: "Failed to shuffle deck",
     });
   }
 });
 
-app.post("/api/sort", (req, res) => {
+app.post("/api/sort", (req: Request, res: Response<SortResponse>) => {
   try {
     const sortMethod = getRandomSortMethod();
     currentDeck = sortDeck([...currentDeck], sortMethod);
     res.json({
       success: true,
       deck: currentDeck,
-      action: "sorted",
+      action: CardAction.SORTED,
       method: sortMethod,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
+      deck: [],
+      action: CardAction.SORTED,
+      method: "rank_then_suit",
       error: "Failed to sort deck",
     });
   }
 });
 
-app.post("/api/reset", (req, res) => {
+app.post("/api/reset", (req: Request, res: Response<ResetResponse>) => {
   try {
     currentDeck = createDeck();
     res.json({
       success: true,
       deck: currentDeck,
-      action: "reset",
+      action: CardAction.RESET,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
+      deck: [],
+      action: CardAction.RESET,
       error: "Failed to reset deck",
     });
   }
 });
 
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(404).json({
     success: false,
     error: "Endpoint not found",
   });
 });
 
-app.use((error, req, res, next) => {
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   console.error("Server error:", error);
   res.status(500).json({
     success: false,
@@ -100,4 +118,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

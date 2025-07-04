@@ -23,6 +23,7 @@ node_modules
 # misc
 .DS_Store
 public/assets/img/.DS_Store
+dist
 dist-dev
 dist-prod
 package-lock.json
