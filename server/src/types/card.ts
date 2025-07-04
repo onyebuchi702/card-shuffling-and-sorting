@@ -22,3 +22,9 @@ export interface Card {
   id: string;
   display: string;
 }
+
+export enum CardAction {
+  SHUFFLED = "shuffled",
+  SORTED = "sorted",
+  RESET = "reset",
+}

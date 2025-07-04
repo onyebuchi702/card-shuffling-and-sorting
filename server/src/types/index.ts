@@ -1,5 +1,4 @@
-import { CardAction } from "@shared/enums/card";
-import { Suit, Rank, SortMethod, Card } from "@shared/types/card";
+import { CardAction, Suit, Rank, SortMethod, Card } from "./card";
 
 export { Card, Suit, Rank, SortMethod, CardAction };
 

@@ -2,7 +2,7 @@
   "name": "card-shuffling-backend",
   "version": "1.0.0",
   "description": "Backend API for card shuffling and sorting application",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
