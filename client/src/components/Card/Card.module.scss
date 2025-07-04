@@ -1,0 +1,106 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.card {
+  background: vars.$card-background;
+  border-radius: vars.$border-radius-md;
+  padding: vars.$spacing-sm;
+  @include mix.flex-column;
+  justify-content: space-between;
+  aspect-ratio: 5/7;
+  box-shadow: vars.$shadow-sm;
+  transition: transform vars.$transition-fast, box-shadow vars.$transition-fast;
+  position: relative;
+  border: 2px solid vars.$card-border;
+  animation: cardAppear 0.3s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: vars.$shadow-lg;
+  }
+}
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cardRed {
+  color: vars.$hearts-color;
+}
+
+.cardBlack {
+  color: vars.$spades-color;
+}
+
+.cardContent {
+  @include mix.flex-column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.cardRank {
+  font-size: vars.$font-size-xl;
+  font-weight: 700;
+  margin-bottom: vars.$spacing-xs;
+}
+
+.cardSuit {
+  font-size: vars.$font-size-xxl;
+  line-height: 1;
+}
+
+.cardFooter {
+  @include mix.flex-between;
+  margin-top: auto;
+  transform: rotate(180deg);
+}
+
+.cardRankSmall,
+.cardSuitSmall {
+  font-size: vars.$font-size-xs;
+  font-weight: 600;
+}
+
+@include mix.mobile-only {
+  .card {
+    padding: vars.$spacing-xs;
+  }
+  
+  .cardRank {
+    font-size: vars.$font-size-large;
+  }
+  
+  .cardSuit {
+    font-size: vars.$font-size-xl;
+  }
+  
+  .cardRankSmall,
+  .cardSuitSmall {
+    font-size: vars.$font-size-xs;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: vars.$spacing-xs;
+  }
+  
+  .cardRank {
+    font-size: vars.$font-size-base;
+  }
+  
+  .cardSuit {
+    font-size: vars.$font-size-large;
+  }
+}

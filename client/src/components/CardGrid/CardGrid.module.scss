@@ -1,0 +1,56 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.cardGrid {
+  margin-top: vars.$spacing-xl;
+}
+
+.cardGridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: vars.$spacing-md;
+  padding: vars.$spacing-md;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: vars.$border-radius-lg;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cardGridLoading {
+  @include mix.flex-center;
+  flex-direction: column;
+  padding: vars.$spacing-xxl vars.$spacing-xl;
+  color: vars.$text-white;
+  text-align: center;
+  
+  p {
+    margin-top: vars.$spacing-md;
+    font-size: vars.$font-size-large;
+    opacity: 0.9;
+  }
+}
+
+.cardGridEmpty {
+  @include mix.flex-center;
+  padding: vars.$spacing-xxl vars.$spacing-xl;
+  color: vars.$text-white;
+  text-align: center;
+  font-size: vars.$font-size-large;
+  opacity: 0.8;
+}
+
+@include mix.tablet-up {
+  .cardGridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-sm;
+  }
+}
+
+@include mix.mobile-only {
+  .cardGridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: vars.$spacing-xs;
+    padding: vars.$spacing-xs;
+  }
+}

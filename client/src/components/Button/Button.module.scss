@@ -1,0 +1,53 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.btn {
+  @include mix.button-primary;
+  display: inline-flex;
+  align-items: center;
+  gap: vars.$spacing-sm;
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border: none;
+  border-radius: vars.$border-radius;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-medium;
+  cursor: pointer;
+  transition: all vars.$transition-fast;
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, vars.$primary-color 0%, vars.$secondary-color 100%);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: vars.$shadow-lg;
+  }
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: vars.$primary-color;
+  border: 2px solid vars.$primary-color;
+  
+  &:hover:not(:disabled) {
+    background: vars.$primary-color;
+    color: white;
+  }
+}
+
+.btnIcon {
+  display: flex;
+  align-items: center;
+  font-size: vars.$font-size-lg;
+}
+
+.btnText {
+  font-weight: vars.$font-weight-medium;
+}

@@ -1,0 +1,75 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.errorBoundary {
+  @include mix.flex-center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, vars.$primary-color 0%, vars.$secondary-color 100%);
+  color: vars.$text-white;
+  padding: vars.$spacing-xl;
+}
+
+.errorBoundaryContent {
+  text-align: center;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: vars.$spacing-xxl;
+  border-radius: vars.$border-radius-xl;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  h2 {
+    font-size: vars.$font-size-xxl;
+    margin-bottom: vars.$spacing-md;
+    color: vars.$warning-color;
+  }
+  
+  p {
+    font-size: vars.$font-size-large;
+    margin-bottom: vars.$spacing-xl;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+}
+
+.errorDetails {
+  background: rgba(0, 0, 0, 0.2);
+  padding: vars.$spacing-md;
+  border-radius: vars.$border-radius-md;
+  margin-bottom: vars.$spacing-xl;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  code {
+    font-family: vars.$font-family-mono;
+    font-size: vars.$font-size-small;
+    color: vars.$warning-color;
+    word-break: break-all;
+  }
+}
+
+.errorResetButton {
+  @include mix.button-primary;
+  padding: vars.$spacing-md vars.$spacing-xl;
+  font-size: vars.$font-size-base;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(vars.$primary-color, 0.4);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(vars.$primary-color, 0.5);
+  }
+}
+
+@include mix.tablet-up {
+  .errorBoundaryContent {
+    padding: vars.$spacing-xl;
+    
+    h2 {
+      font-size: vars.$font-size-xl;
+    }
+    
+    p {
+      font-size: vars.$font-size-base;
+    }
+  }
+}

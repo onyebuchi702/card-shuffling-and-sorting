@@ -1,0 +1,34 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/mixins' as mix;
+
+.controls {
+  @include mix.flex-center;
+  margin-bottom: vars.$spacing-xl;
+}
+
+.controlsGroup {
+  display: flex;
+  gap: vars.$spacing-md;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: vars.$spacing-md;
+  border-radius: vars.$border-radius-lg;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@include mix.tablet-up {
+  .controlsGroup {
+    flex-direction: column;
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-sm;
+  }
+}
+
+@include mix.mobile-only {
+  .controlsGroup {
+    width: 100%;
+    padding: vars.$spacing-xs;
+    gap: vars.$spacing-xs;
+  }
+}
