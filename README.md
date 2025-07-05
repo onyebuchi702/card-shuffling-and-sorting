@@ -48,12 +48,12 @@ card-shuffling-and-sorting/
 
 ### Prerequisites
 - **Node.js** (v16 or higher)
-- **npm** (v7 or higher)
+- **Yarn** (v1.22 or higher)
 
 ### Option 1: Run Both Apps Simultaneously (Recommended)
 ```bash
-npm install
-npm run dev
+yarn install:all
+yarn dev
 ```
 
 This will:
@@ -66,21 +66,21 @@ This will:
 #### Backend Server
 ```bash
 cd server
-npm install
-npm run dev        # Development with auto-reload
+yarn install
+yarn dev           # Development with auto-reload
 # OR
-npm run build      # Build for production
-npm start          # Run production build
+yarn build         # Build for production
+yarn start         # Run production build
 ```
 
 #### Frontend Client
 ```bash
 cd client
-npm install
-npm start          # Development server
+yarn install
+yarn start         # Development server
 # OR
-npm run build      # Build for production
-npm run preview    # Preview production build
+yarn build         # Build for production
+yarn preview       # Preview production build
 ```
 
 ## 🧪 Testing
@@ -90,26 +90,26 @@ This project has test coverage for both frontend and backend.
 ### Run All Tests
 ```bash
 # Test both client and server
-npm run test:all
+yarn test:all
 
 # Test with coverage reports
-npm run test:coverage
+yarn test:coverage
 ```
 
 ### Backend Testing
 ```bash
 cd server
-npm test                   # Run all tests
-npm test -- --coverage     # Run with coverage
-npm test -- --watch        # Run in watch mode
+yarn test                    # Run all tests
+yarn test --coverage        # Run with coverage
+yarn test --watch           # Run in watch mode
 ```
 
 ### Frontend Testing
 ```bash
 cd client
-npm test                   # Run all tests
-npm test -- --coverage     # Run with coverage
-npm test -- --watchAll     # Run in watch mode
+yarn test                    # Run all tests
+yarn test --coverage        # Run with coverage
+yarn test --watchAll        # Run in watch mode
 ```
 
 ## How to Use the Application
@@ -137,9 +137,9 @@ The application supports the following environment variables:
 
 ### Example .env Files
 
-**Client (.env):**
+**Client (.env.local):**
 ```bash
-REACT_APP_API_URL=https://localhost:3001/api
+REACT_APP_API_URL=http://localhost:3001/api
 ```
 
 **Server (.env):**
@@ -233,28 +233,30 @@ Reset deck to original order
 ### Scripts Reference
 
 **Root Level:**
-- `npm run dev` - Start both apps in development
-- `npm run client` - Start only frontend
-- `npm run server` - Start only backend
+- `yarn dev` - Start both apps in development
+- `yarn client` - Start only frontend
+- `yarn server` - Start only backend
 
 **Server:**
-- `npm run dev` - Development with auto-reload
-- `npm run build` - Build TypeScript to JavaScript
-- `npm start` - Run production build
-- `npm test` - Run tests
-- `npm run lint` - Lint code
-- `npm run format` - Format code
+- `yarn dev` - Development with auto-reload
+- `yarn build` - Build TypeScript to JavaScript
+- `yarn start` - Run production build
+- `yarn test` - Run tests
+- `yarn lint` - Lint code
+- `yarn format` - Format code
 
 **Client:**
-- `npm start` - Development server
-- `npm run build` - Production build
-- `npm test` - Run tests
-- `npm run eject` - Eject from Create React App
+- `yarn start` - Development server
+- `yarn build` - Production build
+- `yarn test` - Run tests
+- `yarn eject` - Eject from Create React App
+
+## 🔧 Troubleshooting
 
 **Tests Failing:**
 ```bash
 # Clear test cache
-npm test -- --clearCache
-cd client && npm test -- --clearCache
-cd server && npm test -- --clearCache
+yarn test --clearCache
+cd client && yarn test --clearCache
+cd server && yarn test --clearCache
 ```
