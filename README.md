@@ -34,14 +34,14 @@ card-shuffling-and-sorting/
 │   │   ├── services/             # API service layer
 │   │   ├── types/                # TypeScript interfaces
 │   │   ├── styles/               # SCSS stylesheets
-│   │   └── App.tsx               # Main React application
+│   │   └── App.tsx               # React App
 │   ├── public/                   # Static assets
 │   ├── build/                    # Production build output
 │   ├── package.json
 │   └── tsconfig.json
 ├── node_modules/                 # Root dependencies
 ├── package.json                  # Root package with scripts
-└── README.md                     # This file
+└── README.md                     # README
 ```
 
 ## 🚀 Quick Start
